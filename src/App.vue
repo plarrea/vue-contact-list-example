@@ -12,6 +12,7 @@
         :phone-number="contact.phone"
         :is-favorite="contact.isFavorite"
         @toggle-favorite="toggleFavoriteStatus"
+        @delete-contact="deleteContact"
       />
     </ul>
   </section>
@@ -48,7 +49,7 @@ export default {
   },
   methods: {
     toggleFavoriteStatus(contactId) {
-      const contact = this.contacts.find((f) => f.id === contactId);
+      const contact = this.contacts.find((c) => c.id === contactId);
       if (contact) {
         contact.isFavorite = contact.isFavorite === "1" ? "0" : "1";
       }
@@ -62,6 +63,9 @@ export default {
         isFavorite: "0",
       };
       this.contacts.unshift(newContact);
+    },
+    deleteContact(contactId) {
+      this.contacts = this.contacts.filter((c) => c.id !== contactId);
     },
   },
 };
