@@ -1,15 +1,16 @@
 <template>
   <section>
-    <header><h1>My Friends</h1></header>
+    <header><h1>My Contacts</h1></header>
+    <NewContact @add-contact="addContact" />
     <ul>
-      <FriendContact
-        v-for="friend in friends"
-        :key="friend.id"
-        :id="friend.id"
-        :name="friend.name"
-        :email-address="friend.email"
-        :phone-number="friend.phone"
-        :is-favorite="friend.isFavorite"
+      <ContactItem
+        v-for="contact in contacts"
+        :key="contact.id"
+        :id="contact.id"
+        :name="contact.name"
+        :email-address="contact.email"
+        :phone-number="contact.phone"
+        :is-favorite="contact.isFavorite"
         @toggle-favorite="toggleFavoriteStatus"
       />
     </ul>
@@ -17,15 +18,17 @@
 </template>
 
 <script>
-import FriendContact from "./components/FriendContact.vue";
+import ContactItem from "./components/ContactItem.vue";
+import NewContact from "./components/NewContact.vue";
 
 export default {
   components: {
-    FriendContact,
+    ContactItem,
+    NewContact,
   },
   data() {
     return {
-      friends: [
+      contacts: [
         {
           id: "manuel",
           name: "Manuel Lorenz",
@@ -44,10 +47,10 @@ export default {
     };
   },
   methods: {
-    toggleFavoriteStatus(friendId) {
-      const friend = this.friends.find((f) => f.id === friendId);
-      if (friend) {
-        friend.isFavorite = friend.isFavorite === "1" ? "0" : "1";
+    toggleFavoriteStatus(contactId) {
+      const contact = this.contacts.find((f) => f.id === contactId);
+      if (contact) {
+        contact.isFavorite = contact.isFavorite === "1" ? "0" : "1";
       }
     },
     addContact(name, phone, email) {
@@ -58,7 +61,7 @@ export default {
         email,
         isFavorite: "0",
       };
-      this.friends.unshift(newContact);
+      this.contacts.unshift(newContact);
     },
   },
 };
