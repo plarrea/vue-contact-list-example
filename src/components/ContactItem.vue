@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "FriendContact",
+  name: "ContactItem",
   props: {
     id: {
       type: String,
