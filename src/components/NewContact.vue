@@ -59,9 +59,3 @@ form div {
   margin: 1rem 0;
 }
 </style>
-
-<!-- sakhon azul
-wang verde
-takeshi kishida azul
-genzo verde
-mamoru verde -->
